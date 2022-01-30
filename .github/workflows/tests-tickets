@@ -1,4 +1,4 @@
-name: tests
+name: tests-tickets
 
 on: 
   pull_request
@@ -9,7 +9,6 @@ jobs:
   # jobs: opens a ubuntu VM
     steps:
       - uses: actions/checkout@v2
-      - run: cd auth && npm i && npm run test:ci
+      - run: cd tickets && npm i && npm run test:ci
       # test:ci- imp
       
-    
