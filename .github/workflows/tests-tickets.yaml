@@ -1,14 +1,15 @@
 name: tests-tickets
 
-on: 
-  pull_request
+on:
+  pull_request:
+    paths:
+      - 'tickets/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-  # jobs: opens a ubuntu VM
+    # jobs: opens a ubuntu VM
     steps:
       - uses: actions/checkout@v2
       - run: cd tickets && npm i && npm run test:ci
       # test:ci- imp
-      
