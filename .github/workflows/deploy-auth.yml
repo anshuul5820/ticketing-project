@@ -1,0 +1,22 @@
+name: deploy-auth
+
+on:
+  #push bcoz on merging PR, it counts a push to main branch
+  push:
+    branches:
+      - master
+    paths:
+      #run when sth indide auth is changed
+      - 'auth/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        # ubuntu-latest has docker preinstalled
+      - run: cd auth && docker build -t schuylerdare96/auth .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASS
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      - run: docker push schuylerdare96/auth
