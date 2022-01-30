@@ -40,7 +40,7 @@ const start = async () => {
       )
 
     natsWrapper.client.on('close', () => {
-      console.log('nats connection closed')
+      console.log('nats connection closed!!')
       process.exit()
     })//if some client is shutdown
     process.on('SIGINT', () => { natsWrapper.client.close() })
