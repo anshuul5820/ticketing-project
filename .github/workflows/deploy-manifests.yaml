@@ -21,4 +21,4 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save ticketing-project
       # apply all manifests inside k8s dir
-      - run: kubectl apply -f infra/k8s
+      - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
