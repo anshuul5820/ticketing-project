@@ -4,7 +4,7 @@ on:
   #push bcoz on merging PR, it counts a push to main branch
   push:
     branches:
-      - master
+      - main
     paths:
       #run when sth indide auth is changed
       - 'auth/**'
