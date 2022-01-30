@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre('save', async function (done) {
-  console.log('userSchema.pre')//testing purposes
+  console.log('userSchema.preeee')//testing purposes
 
   if (this.isModified('password')) {
     const hashed = await Password.toHash(this.get('password'));
