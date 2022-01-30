@@ -1,0 +1,24 @@
+name: deploy-manifests
+
+on:
+  #push bcoz on merging PR, it counts a push to main branch
+  push:
+    branches:
+      - main
+    paths:
+      #run when sth indide auth is changed
+      - 'infra/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # ubuntu-latest has docker preinstalled
+    steps:
+      - uses: actions/checkout@v2      
+      # installs doctl into github container
+      - uses: digitalocean/action-doctl@v2
+        # this returns a pre-auth docktl env
+        with: 
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save ticketing-project
+      # apply all manifests inside k8s dir
+      - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod

@@ -1,0 +1,15 @@
+name: tests-orders
+
+on:
+  pull_request:
+    paths:
+      - 'orders/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # jobs: opens a ubuntu VM
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd orders && npm i && npm run test:ci
+      # test:ci- imp
